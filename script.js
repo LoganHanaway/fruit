@@ -77,23 +77,24 @@ function search(str) {
 function searchHandler(e) {
   const inputVal = e.target.value;
   const results = search(inputVal);
-  showSuggestions(results, inputVal);
+  showSuggestions(results, inputVal);  // removed inputval as a parameter
 }
 
-function showSuggestions(results, inputVal) {
-  suggestions.innerHTML = '';
-  
-  if (results.length > 0) {
-    results.forEach(result => {
-      const li = document.createElement('li');
-      li.textContent = result;
-      suggestions.appendChild(li);
-    });
-    suggestions.classList.add('has-suggestions');
-  } else {
-    suggestions.classList.remove('has-suggestions');
+function showSuggestions(results) { // removed input val, 'inputVal' is declared but never read
+	suggestions.innerHTML = '';
+	
+	if (results.length > 0) {
+	  results.forEach(result => {
+		const li = document.createElement('li');
+		li.textContent = result;
+		suggestions.appendChild(li);
+	  });
+	  suggestions.classList.add('has-suggestions');
+	} else {
+	  suggestions.classList.remove('has-suggestions');
+	}
   }
-}
+  
 
 function useSuggestion(e) {
   if (e.target.tagName === 'LI') {
